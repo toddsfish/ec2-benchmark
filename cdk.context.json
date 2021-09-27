@@ -54,5 +54,8 @@
     "ap-northeast-1d"
   ],
   "ssm:account=302766791300:parameterName=/aws/service/canonical/ubuntu/server/18.04/stable/current/amd64/hvm/ebs-gp2/ami-id:region=ap-southeast-1": "ami-05bf486ae7131d636",
-  "ssm:account=302766791300:parameterName=/aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2/ami-id:region=ap-southeast-1": "ami-0f0b17182b1d50c14"
+  "ssm:account=302766791300:parameterName=/aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2/ami-id:region=ap-southeast-1": "ami-0f0b17182b1d50c14",
+  "ssm:account=302766791300:parameterName=/aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2/ami-id:region=us-east-1": "ami-019212a8baeffb0fa",
+  "ssm:account=302766791300:parameterName=/aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2/ami-id:region=us-west-2": "ami-02868af3c3df4b3aa",
+  "ssm:account=302766791300:parameterName=/aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2/ami-id:region=ap-southeast-2": "ami-04b1878ebf78f7370"
 }

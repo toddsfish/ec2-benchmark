@@ -19,7 +19,7 @@ class CdkEc2BenchmarkStack(core.Stack):
         subnets.append(ec2.SubnetConfiguration(name = "isolated", subnet_type = ec2.SubnetType.ISOLATED, cidr_mask = 24))
 
         # Define VPC
-        vpc = ec2.Vpc(self, "vpc", cidr="10.10.0.0/16", subnet_configuration = subnets, max_azs = 2)
+        vpc = ec2.Vpc(self, "vpc", cidr="10.10.0.0/16", subnet_configuration = subnets, max_azs = 3)
 
         # Define SG for ingress SSH (TCP:22), RDP (TCP:3389), iperf3 (TCP:5201), HTTP (TCP:80)
         pub_sg = ec2.SecurityGroup(self, "pub_sg", vpc=vpc, security_group_name = "pub_sg")
@@ -28,6 +28,7 @@ class CdkEc2BenchmarkStack(core.Stack):
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(5001))
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(5201))
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(80))
+        pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("10.10.0.0/16"), connection = ec2.Port.udp(4789))
 
         # Define instance type a and type b, ideally we should use same instance type.
         type_a = ec2.InstanceType(instance_type_identifier = "t3.micro")
@@ -53,7 +54,7 @@ class CdkEc2BenchmarkStack(core.Stack):
 
         # Define UserData for Ubuntu Linux
         ubuntu_userdata = ec2.UserData.for_linux()
-        ubuntu_userdata.add_commands("sudo apt update && sudo apt -y install curl whois bind9-host jq ipcalc grepcidr ncat iperf3 hping3 mtr traceroute aha")
+        ubuntu_userdata.add_commands("sudo apt update && sudo apt -y install net-tools curl whois bind9-host jq ipcalc grepcidr ncat iperf3 hping3 mtr traceroute aha")
         ubuntu_userdata.add_commands("sudo curl https://raw.githubusercontent.com/nitefood/asn/master/asn > /usr/bin/asn")
         ubuntu_userdata.add_commands("sudo chmod 0755 /usr/bin/asn")
         ubuntu_userdata.add_commands(
@@ -93,11 +94,16 @@ class CdkEc2BenchmarkStack(core.Stack):
 
         # Define public Instance B
         instance_b = ec2.Instance(self, "pub-instance_b", instance_type = type_b, machine_image = ubuntu_ami, vpc=vpc, vpc_subnets = ec2.SubnetSelection(subnet_type = ec2.SubnetType.PUBLIC), availability_zone= stack.region + "b", security_group = pub_sg, key_name = "prod-" + stack.region + "-keypair")
+        
+        # Define Public Instance C
+        instance_c = ec2.Instance(self, "pub-instance_c", instance_type = type_b, machine_image = ubuntu_ami, vpc=vpc, vpc_subnets = ec2.SubnetSelection(subnet_type = ec2.SubnetType.PUBLIC), availability_zone= stack.region + "c", security_group = pub_sg, key_name = "prod-" + stack.region + "-keypair")
 
         core.CfnOutput(self, 'public-ip-instance-a', value=instance_a.instance_public_ip)
         core.CfnOutput(self, 'public-ip-instance-b', value=instance_b.instance_public_ip)
+        core.CfnOutput(self, 'public-ip-instance-c', value=instance_c.instance_public_ip)
         core.CfnOutput(self, 'public-subnet-a', value=vpc.public_subnets[0].subnet_id)
         core.CfnOutput(self, 'public-subnets-b', value=vpc.public_subnets[1].subnet_id)
+        core.CfnOutput(self, 'public-subnets-c', value=vpc.public_subnets[2].subnet_id)
 
 stack = core.Environment(account=os.environ["CDK_DEPLOY_ACCOUNT"], region=os.environ["CDK_DEPLOY_REGION"])
 app = core.App()
