@@ -18,17 +18,18 @@ class CdkEc2BenchmarkStack(core.Stack):
         subnets.append(ec2.SubnetConfiguration(name = "public", subnet_type = ec2.SubnetType.PUBLIC, cidr_mask = 24))
         subnets.append(ec2.SubnetConfiguration(name = "isolated", subnet_type = ec2.SubnetType.ISOLATED, cidr_mask = 24))
 
-        # Define VPC
-        vpc = ec2.Vpc(self, "vpc", cidr="10.10.0.0/16", subnet_configuration = subnets, max_azs = 3)
+        # Define VPC - Note: This will span all AZs in a region but you can manually set max_az to a numerical value for AZs to span. i.e 3 - note: also EIP usage.
+        vpc = ec2.Vpc(self, "vpc", cidr="10.10.0.0/16", subnet_configuration = subnets, max_azs = len(self.availability_zones))
 
         # Define SG for ingress SSH (TCP:22), RDP (TCP:3389), iperf3 (TCP:5201), HTTP (TCP:80)
         pub_sg = ec2.SecurityGroup(self, "pub_sg", vpc=vpc, security_group_name = "pub_sg")
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(22))
+        pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(80))
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(3389))
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(5001))
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(5201))
-        pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(80))
-        pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("10.10.0.0/16"), connection = ec2.Port.udp(4789))
+        pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(49200))
+        # pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("10.10.0.0/16"), connection = ec2.Port.udp(4789))
 
         # Define instance type a and type b, ideally we should use same instance type.
         type_a = ec2.InstanceType(instance_type_identifier = "t3.micro")
@@ -54,7 +55,7 @@ class CdkEc2BenchmarkStack(core.Stack):
 
         # Define UserData for Ubuntu Linux
         ubuntu_userdata = ec2.UserData.for_linux()
-        ubuntu_userdata.add_commands("sudo apt update && sudo apt -y install net-tools curl whois bind9-host jq ipcalc grepcidr ncat iperf3 hping3 mtr traceroute aha")
+        ubuntu_userdata.add_commands("sudo apt update && sudo apt -y install net-tools curl whois bind9-host jq ipcalc grepcidr ncat iperf3 hping3 mtr traceroute aha apache2")
         ubuntu_userdata.add_commands("sudo curl https://raw.githubusercontent.com/nitefood/asn/master/asn > /usr/bin/asn")
         ubuntu_userdata.add_commands("sudo chmod 0755 /usr/bin/asn")
         ubuntu_userdata.add_commands(
@@ -69,7 +70,7 @@ class CdkEc2BenchmarkStack(core.Stack):
             Restart=always
             RestartSec=1
             User=ubuntu
-            ExecStart=sudo asn -l 0.0.0.0 80
+            ExecStart=sudo asn -l 0.0.0.0 49200
 
             [Install]
             WantedBy=multi-user.target

@@ -1,0 +1,1300 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree"
+      },
+      "cdk-ec2-benchmark-ap-southeast-2": {
+        "id": "cdk-ec2-benchmark-ap-southeast-2",
+        "path": "cdk-ec2-benchmark-ap-southeast-2",
+        "children": {
+          "vpc": {
+            "id": "vpc",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/vpc",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
+                  "aws:cdk:cloudformation:props": {
+                    "cidrBlock": "10.10.0.0/16",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "instanceTenancy": "default",
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "cdk-ec2-benchmark-ap-southeast-2/vpc"
+                      }
+                    ]
+                  }
+                }
+              },
+              "privateSubnet1": {
+                "id": "privateSubnet1",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.10.0.0/24",
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "availabilityZone": "ap-southeast-2a",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "private"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet1/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcprivateSubnet1RouteTableC1CE9D76"
+                        },
+                        "subnetId": {
+                          "Ref": "vpcprivateSubnet1SubnetAE1393DC"
+                        }
+                      }
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet1/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcprivateSubnet1RouteTableC1CE9D76"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "natGatewayId": {
+                          "Ref": "vpcpublicSubnet1NATGateway974E731F"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "privateSubnet2": {
+                "id": "privateSubnet2",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.10.1.0/24",
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "availabilityZone": "ap-southeast-2b",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "private"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet2/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcprivateSubnet2RouteTable882A110C"
+                        },
+                        "subnetId": {
+                          "Ref": "vpcprivateSubnet2Subnet1C8B0CEE"
+                        }
+                      }
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet2/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcprivateSubnet2RouteTable882A110C"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "natGatewayId": {
+                          "Ref": "vpcpublicSubnet2NATGateway97E8DB6F"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "privateSubnet3": {
+                "id": "privateSubnet3",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet3",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet3/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.10.2.0/24",
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "availabilityZone": "ap-southeast-2c",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "private"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet3"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet3/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet3/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet3"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet3/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcprivateSubnet3RouteTable42E0F53B"
+                        },
+                        "subnetId": {
+                          "Ref": "vpcprivateSubnet3SubnetE7E339A1"
+                        }
+                      }
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/privateSubnet3/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcprivateSubnet3RouteTable42E0F53B"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "natGatewayId": {
+                          "Ref": "vpcpublicSubnet3NATGateway4134ED1A"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "publicSubnet1": {
+                "id": "publicSubnet1",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.10.3.0/24",
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "availabilityZone": "ap-southeast-2a",
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "public"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcpublicSubnet1RouteTableA38152FE"
+                        },
+                        "subnetId": {
+                          "Ref": "vpcpublicSubnet1SubnetA635257E"
+                        }
+                      }
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcpublicSubnet1RouteTableA38152FE"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "vpcIGWE57CBDCA"
+                        }
+                      }
+                    }
+                  },
+                  "EIP": {
+                    "id": "EIP",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1/EIP",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
+                      "aws:cdk:cloudformation:props": {
+                        "domain": "vpc",
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "NATGateway": {
+                    "id": "NATGateway",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1/NATGateway",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "allocationId": {
+                          "Fn::GetAtt": [
+                            "vpcpublicSubnet1EIP909BE2D3",
+                            "AllocationId"
+                          ]
+                        },
+                        "subnetId": {
+                          "Ref": "vpcpublicSubnet1SubnetA635257E"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "publicSubnet2": {
+                "id": "publicSubnet2",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.10.4.0/24",
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "availabilityZone": "ap-southeast-2b",
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "public"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcpublicSubnet2RouteTableA6135437"
+                        },
+                        "subnetId": {
+                          "Ref": "vpcpublicSubnet2Subnet027D165B"
+                        }
+                      }
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcpublicSubnet2RouteTableA6135437"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "vpcIGWE57CBDCA"
+                        }
+                      }
+                    }
+                  },
+                  "EIP": {
+                    "id": "EIP",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2/EIP",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
+                      "aws:cdk:cloudformation:props": {
+                        "domain": "vpc",
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "NATGateway": {
+                    "id": "NATGateway",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2/NATGateway",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "allocationId": {
+                          "Fn::GetAtt": [
+                            "vpcpublicSubnet2EIPB56D1A92",
+                            "AllocationId"
+                          ]
+                        },
+                        "subnetId": {
+                          "Ref": "vpcpublicSubnet2Subnet027D165B"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "publicSubnet3": {
+                "id": "publicSubnet3",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.10.5.0/24",
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "availabilityZone": "ap-southeast-2c",
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "public"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcpublicSubnet3RouteTable901FAA39"
+                        },
+                        "subnetId": {
+                          "Ref": "vpcpublicSubnet3Subnet3B90E684"
+                        }
+                      }
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcpublicSubnet3RouteTable901FAA39"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "vpcIGWE57CBDCA"
+                        }
+                      }
+                    }
+                  },
+                  "EIP": {
+                    "id": "EIP",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3/EIP",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
+                      "aws:cdk:cloudformation:props": {
+                        "domain": "vpc",
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "NATGateway": {
+                    "id": "NATGateway",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3/NATGateway",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "allocationId": {
+                          "Fn::GetAtt": [
+                            "vpcpublicSubnet3EIP8F60B2E4",
+                            "AllocationId"
+                          ]
+                        },
+                        "subnetId": {
+                          "Ref": "vpcpublicSubnet3Subnet3B90E684"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/publicSubnet3"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "isolatedSubnet1": {
+                "id": "isolatedSubnet1",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.10.6.0/24",
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "availabilityZone": "ap-southeast-2a",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "isolated"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet1/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcisolatedSubnet1RouteTable7903AE22"
+                        },
+                        "subnetId": {
+                          "Ref": "vpcisolatedSubnet1Subnet06BBE51F"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "isolatedSubnet2": {
+                "id": "isolatedSubnet2",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.10.7.0/24",
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "availabilityZone": "ap-southeast-2b",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "isolated"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet2/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcisolatedSubnet2RouteTableD2247699"
+                        },
+                        "subnetId": {
+                          "Ref": "vpcisolatedSubnet2Subnet51F71E92"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "isolatedSubnet3": {
+                "id": "isolatedSubnet3",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet3",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet3/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.10.8.0/24",
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "availabilityZone": "ap-southeast-2c",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "isolated"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet3"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet3/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet3/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "vpcA2121C38"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet3"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/isolatedSubnet3/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "vpcisolatedSubnet3RouteTableA5F3A5A5"
+                        },
+                        "subnetId": {
+                          "Ref": "vpcisolatedSubnet3Subnet9AD891C2"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "IGW": {
+                "id": "IGW",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/IGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "cdk-ec2-benchmark-ap-southeast-2/vpc"
+                      }
+                    ]
+                  }
+                }
+              },
+              "VPCGW": {
+                "id": "VPCGW",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/vpc/VPCGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+                  "aws:cdk:cloudformation:props": {
+                    "vpcId": {
+                      "Ref": "vpcA2121C38"
+                    },
+                    "internetGatewayId": {
+                      "Ref": "vpcIGWE57CBDCA"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "pub_sg": {
+            "id": "pub_sg",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/pub_sg",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/pub_sg/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "cdk-ec2-benchmark-ap-southeast-2/pub_sg",
+                    "groupName": "pub_sg",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 22,
+                        "toPort": 22,
+                        "description": "from 0.0.0.0/0:22"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 80,
+                        "toPort": 80,
+                        "description": "from 0.0.0.0/0:80"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 3389,
+                        "toPort": 3389,
+                        "description": "from 0.0.0.0/0:3389"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 5001,
+                        "toPort": 5001,
+                        "description": "from 0.0.0.0/0:5001"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 5201,
+                        "toPort": 5201,
+                        "description": "from 0.0.0.0/0:5201"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 49200,
+                        "toPort": 49200,
+                        "description": "from 0.0.0.0/0:49200"
+                      }
+                    ],
+                    "vpcId": {
+                      "Ref": "vpcA2121C38"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "pub-instance_a": {
+            "id": "pub-instance_a",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_a",
+            "children": {
+              "InstanceRole": {
+                "id": "InstanceRole",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_a/InstanceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_a/InstanceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "ec2.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_a"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "InstanceProfile": {
+                "id": "InstanceProfile",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_a/InstanceProfile",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                  "aws:cdk:cloudformation:props": {
+                    "roles": [
+                      {
+                        "Ref": "pubinstanceaInstanceRoleDEB44D92"
+                      }
+                    ]
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_a/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                  "aws:cdk:cloudformation:props": {
+                    "availabilityZone": "ap-southeast-2a",
+                    "iamInstanceProfile": {
+                      "Ref": "pubinstanceaInstanceProfile31D99C68"
+                    },
+                    "imageId": "ami-04b1878ebf78f7370",
+                    "instanceType": "t3.micro",
+                    "keyName": "prod-ap-southeast-2-keypair",
+                    "securityGroupIds": [
+                      {
+                        "Fn::GetAtt": [
+                          "pubsgE391E72B",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnetId": {
+                      "Ref": "vpcpublicSubnet1SubnetA635257E"
+                    },
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_a"
+                      }
+                    ],
+                    "userData": {
+                      "Fn::Base64": "#!/bin/bash\nsudo apt update && sudo apt -y install net-tools curl whois bind9-host jq ipcalc grepcidr ncat iperf3 hping3 mtr traceroute aha apache2\nsudo curl https://raw.githubusercontent.com/nitefood/asn/master/asn > /usr/bin/asn\nsudo chmod 0755 /usr/bin/asn\n\n            sudo echo \"[Unit]\n            Description=ASN lookup and traceroute server\n            After=network.target\n            StartLimitIntervalSec=0\n\n            [Service]\n            Type=simple\n            Restart=always\n            RestartSec=1\n            User=ubuntu\n            ExecStart=sudo asn -l 0.0.0.0 49200\n\n            [Install]\n            WantedBy=multi-user.target\n            \" >> /etc/systemd/system/asn.service\n\n            \nsudo setcap cap_net_raw+ep $(which mtr-packet)\nsystemctl start asn"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "pub-instance_b": {
+            "id": "pub-instance_b",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_b",
+            "children": {
+              "InstanceRole": {
+                "id": "InstanceRole",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_b/InstanceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_b/InstanceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "ec2.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_b"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "InstanceProfile": {
+                "id": "InstanceProfile",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_b/InstanceProfile",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                  "aws:cdk:cloudformation:props": {
+                    "roles": [
+                      {
+                        "Ref": "pubinstancebInstanceRoleABEF0A3A"
+                      }
+                    ]
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_b/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                  "aws:cdk:cloudformation:props": {
+                    "availabilityZone": "ap-southeast-2b",
+                    "iamInstanceProfile": {
+                      "Ref": "pubinstancebInstanceProfileCEDE5B5D"
+                    },
+                    "imageId": "ami-04b1878ebf78f7370",
+                    "instanceType": "t3.micro",
+                    "keyName": "prod-ap-southeast-2-keypair",
+                    "securityGroupIds": [
+                      {
+                        "Fn::GetAtt": [
+                          "pubsgE391E72B",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnetId": {
+                      "Ref": "vpcpublicSubnet2Subnet027D165B"
+                    },
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_b"
+                      }
+                    ],
+                    "userData": {
+                      "Fn::Base64": "#!/bin/bash\nsudo apt update && sudo apt -y install net-tools curl whois bind9-host jq ipcalc grepcidr ncat iperf3 hping3 mtr traceroute aha apache2\nsudo curl https://raw.githubusercontent.com/nitefood/asn/master/asn > /usr/bin/asn\nsudo chmod 0755 /usr/bin/asn\n\n            sudo echo \"[Unit]\n            Description=ASN lookup and traceroute server\n            After=network.target\n            StartLimitIntervalSec=0\n\n            [Service]\n            Type=simple\n            Restart=always\n            RestartSec=1\n            User=ubuntu\n            ExecStart=sudo asn -l 0.0.0.0 49200\n\n            [Install]\n            WantedBy=multi-user.target\n            \" >> /etc/systemd/system/asn.service\n\n            \nsudo setcap cap_net_raw+ep $(which mtr-packet)\nsystemctl start asn"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "pub-instance_c": {
+            "id": "pub-instance_c",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_c",
+            "children": {
+              "InstanceRole": {
+                "id": "InstanceRole",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_c/InstanceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_c/InstanceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "ec2.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_c"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "InstanceProfile": {
+                "id": "InstanceProfile",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_c/InstanceProfile",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                  "aws:cdk:cloudformation:props": {
+                    "roles": [
+                      {
+                        "Ref": "pubinstancecInstanceRoleA39A3AE9"
+                      }
+                    ]
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_c/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                  "aws:cdk:cloudformation:props": {
+                    "availabilityZone": "ap-southeast-2c",
+                    "iamInstanceProfile": {
+                      "Ref": "pubinstancecInstanceProfileD6961FD9"
+                    },
+                    "imageId": "ami-04b1878ebf78f7370",
+                    "instanceType": "t3.micro",
+                    "keyName": "prod-ap-southeast-2-keypair",
+                    "securityGroupIds": [
+                      {
+                        "Fn::GetAtt": [
+                          "pubsgE391E72B",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnetId": {
+                      "Ref": "vpcpublicSubnet3Subnet3B90E684"
+                    },
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "cdk-ec2-benchmark-ap-southeast-2/pub-instance_c"
+                      }
+                    ],
+                    "userData": {
+                      "Fn::Base64": "#!/bin/bash\nsudo apt update && sudo apt -y install net-tools curl whois bind9-host jq ipcalc grepcidr ncat iperf3 hping3 mtr traceroute aha apache2\nsudo curl https://raw.githubusercontent.com/nitefood/asn/master/asn > /usr/bin/asn\nsudo chmod 0755 /usr/bin/asn\n\n            sudo echo \"[Unit]\n            Description=ASN lookup and traceroute server\n            After=network.target\n            StartLimitIntervalSec=0\n\n            [Service]\n            Type=simple\n            Restart=always\n            RestartSec=1\n            User=ubuntu\n            ExecStart=sudo asn -l 0.0.0.0 49200\n\n            [Install]\n            WantedBy=multi-user.target\n            \" >> /etc/systemd/system/asn.service\n\n            \nsudo setcap cap_net_raw+ep $(which mtr-packet)\nsystemctl start asn"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "public-ip-instance-a": {
+            "id": "public-ip-instance-a",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/public-ip-instance-a"
+          },
+          "public-ip-instance-b": {
+            "id": "public-ip-instance-b",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/public-ip-instance-b"
+          },
+          "public-ip-instance-c": {
+            "id": "public-ip-instance-c",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/public-ip-instance-c"
+          },
+          "public-subnet-a": {
+            "id": "public-subnet-a",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/public-subnet-a"
+          },
+          "public-subnets-b": {
+            "id": "public-subnets-b",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/public-subnets-b"
+          },
+          "public-subnets-c": {
+            "id": "public-subnets-c",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/public-subnets-c"
+          }
+        }
+      }
+    }
+  }
+}
