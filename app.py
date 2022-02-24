@@ -23,13 +23,14 @@ class CdkEc2BenchmarkStack(core.Stack):
 
         # Define SG for ingress SSH (TCP:22), RDP (TCP:3389), iperf3 (TCP:5201), HTTP (TCP:80)
         pub_sg = ec2.SecurityGroup(self, "pub_sg", vpc=vpc, security_group_name = "pub_sg")
+        pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.icmp_ping())
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(22))
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(80))
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(3389))
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(5001))
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(5201))
         pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("0.0.0.0/0"), connection = ec2.Port.tcp(49200))
-        # pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("10.10.0.0/16"), connection = ec2.Port.udp(4789))
+        # pub_sg.add_ingress_rule(peer = ec2.Peer.ipv4("10.10.0.0/16"), connection = ec2.Port.udp(4789)) - for VXLAN / traffic mirroring.
 
         # Define instance type a and type b, ideally we should use same instance type.
         type_a = ec2.InstanceType(instance_type_identifier = "t3.micro")
@@ -105,6 +106,9 @@ class CdkEc2BenchmarkStack(core.Stack):
         core.CfnOutput(self, 'public-subnet-a', value=vpc.public_subnets[0].subnet_id)
         core.CfnOutput(self, 'public-subnets-b', value=vpc.public_subnets[1].subnet_id)
         core.CfnOutput(self, 'public-subnets-c', value=vpc.public_subnets[2].subnet_id)
+        core.CfnOutput(self, 'az-instance-a', value=instance_a.instance_availability_zone)
+        core.CfnOutput(self, 'az-instance-b', value=instance_b.instance_availability_zone)
+        core.CfnOutput(self, 'az-instance-c', value=instance_c.instance_availability_zone)
 
 stack = core.Environment(account=os.environ["CDK_DEPLOY_ACCOUNT"], region=os.environ["CDK_DEPLOY_REGION"])
 app = core.App()

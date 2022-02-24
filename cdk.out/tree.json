@@ -953,6 +953,13 @@
                     "securityGroupIngress": [
                       {
                         "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "icmp",
+                        "fromPort": 8,
+                        "toPort": -1,
+                        "description": "from 0.0.0.0/0:ICMP Type 8"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
                         "ipProtocol": "tcp",
                         "fromPort": 22,
                         "toPort": 22,
@@ -1292,6 +1299,18 @@
           "public-subnets-c": {
             "id": "public-subnets-c",
             "path": "cdk-ec2-benchmark-ap-southeast-2/public-subnets-c"
+          },
+          "az-instance-a": {
+            "id": "az-instance-a",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/az-instance-a"
+          },
+          "az-instance-b": {
+            "id": "az-instance-b",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/az-instance-b"
+          },
+          "az-instance-c": {
+            "id": "az-instance-c",
+            "path": "cdk-ec2-benchmark-ap-southeast-2/az-instance-c"
           }
         }
       }
